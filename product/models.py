@@ -1,29 +1,29 @@
 from django.db import models
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.utils.translation import gettext_lazy as _
+from main.models import BaseModel
 
-
-class ProductModel(models.Model):
+class ProductModel(BaseModel):
     name = models.CharField(_("name"), max_length=255)
-    content = RichTextField(_("content"))
+    content = RichTextUploadingField(_("content"))
     price = models.BigIntegerField()
-    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return self.name
-    
-    class Meta:
-        verbose_name = 'product'
-        verbose_name_plural = 'products'
 
-class FreeProductModel(models.Model):
-    product = models.ForeignKey(ProductModel, on_delete=models.CASCADE)
+    class Meta:
+        verbose_name = _('product')
+        verbose_name_plural = _('products')
+
+
+class FreeProductModel(BaseModel):
+    product = models.ForeignKey(ProductModel, on_delete=models.CASCADE, related_name='freeProducts')
     count = models.IntegerField()
     free_count = models.IntegerField()
 
     def __str__(self) -> str:
         return self.product.name
-    
+
     class Meta:
-        verbose_name = 'freeProduct'
-        verbose_name_plural = 'freeProducts'
+        verbose_name = _('freeProduct')
+        verbose_name_plural = _('freeProducts')

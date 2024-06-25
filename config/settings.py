@@ -1,21 +1,26 @@
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
+import os
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env = environ.Env(
+    DEBUG=(bool, False),
+    ALLOWED_HOSTS = (list, []),
+)
 
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8)eqqu1+!ewfe3hd#+t+c46nllyul_4&%i%rxmwj2y0r!w^sdn'
-
+SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+DEBUG = env("DEBUG")
+BOT_TOKEN = env("BOT_TOKEN")
+ALLOWED_HOSTS = env("ALLOWED_HOSTS")
 
 # Application definition
 
@@ -28,17 +33,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'ckeditor', 
+    'ckeditor',
     'corsheaders',
+    'ckeditor_uploader',
 
-    #app
+    # app
     'user',
     'order',
     'product',
-    'main'
+    'main',
 ]
 
-MIDDLEWARE = [ 
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     "django.middleware.locale.LocaleMiddleware",
@@ -51,12 +57,15 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'config.urls'
-CORS_ALLOW_ALL_ORIGINS = True   
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,9 +80,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': os.environ.get("DB_ENGINE", 'django.db.backends.sqlite3'),
+#         'NAME': os.environ.get("DB_NAME", BASE_DIR / 'db.sqlite3'),
+#         'USER': os.environ.get("DB_USER", 'user'),
+#         'PASSWORD': os.environ.get("DB_PASSWORD", 'password'),
+#         'HOST': os.environ.get("DB_HOST", 'localhost'),
+#         'PORT': os.environ.get("DB_PORT", '5432')
+#     }
+# }
 
 DATABASES = {
     'default': {
@@ -81,7 +100,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -101,7 +119,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -120,17 +137,22 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'static'
 
-STATIC_FILESDIRS = BASE_DIR / 'assets',
+STATICFILES_DIRS = BASE_DIR / 'assets',
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 AUTH_USER_MODEL = "user.UserModel"
 
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+
+CKEDITOR_IMAGE_BACKEND = 'pillow'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 

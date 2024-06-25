@@ -2,23 +2,24 @@ from django.db import models
 from product.models import ProductModel
 from user.models import UserModel
 from django.utils.translation import gettext_lazy as _
+from main.models import BaseModel
 
-class OrderModel(models.Model):
-    product = models.ForeignKey(ProductModel, on_delete=models.CASCADE)
+class OrderModel(BaseModel):
+    product = models.ForeignKey(ProductModel, on_delete=models.CASCADE, related_name="orders")
     count = models.IntegerField()
     free_count = models.BigIntegerField()
-    customer = models.ForeignKey(UserModel, on_delete=models.CASCADE)
-    longitude = models.BigIntegerField()
-    latitude = models.BigIntegerField()
+    customer = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='customer')
+    longitude = models.FloatField()
+    latitude = models.FloatField()
     status = models.TextField(_("status"))
-    status_changed_at = models.BigIntegerField()
+    status_changed_at = models.DateTimeField(auto_now_add=True)
     product_price = models.BigIntegerField()
     total_price = models.BigIntegerField()
-    admin = models.ForeignKey(UserModel, on_delete=models.CASCADE)
-
+    admin = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='admin')
+    
     def __str__(self) -> str:
-        return self.product.name
+        return f"{self.id} {self.product.name}"
 
     class Meta:
-        verbose_name = 'order'
-        verbose_name_plural = 'orders'
+        verbose_name = _('order')
+        verbose_name_plural = _('orders')
