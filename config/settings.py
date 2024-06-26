@@ -7,20 +7,21 @@ import environ
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env(
-    DEBUG=(bool, False),
+    DEBUG=(bool, True),
     ALLOWED_HOSTS = (list, []),
 )
-
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("SECRET_KEY")
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG")
 BOT_TOKEN = env("BOT_TOKEN")
 ALLOWED_HOSTS = env("ALLOWED_HOSTS")
+
+# SECRET_KEY = 'django-insecure-8)eqqu1+!ewfe3hd#+t+c46nllyul_4&%i%rxmwj2y0r!w^sdn'
+# DEBUG = True
+# ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -64,7 +65,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'templates',
+            # BASE_DIR / 'templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -122,11 +123,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'uz'
+LANGUAGE_CODE = 'ru'
 
 LANGUAGES = [
+    ('uz', _("Uzbek")),
     ('ru', _('Russia')),
-    ('uz', _("Uzbek"))
 ]
 
 LOCALE_PATHS = BASE_DIR / 'locale',

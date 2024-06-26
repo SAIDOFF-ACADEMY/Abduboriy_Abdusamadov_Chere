@@ -4,8 +4,8 @@ from django.utils.translation import gettext_lazy as _
 from main.models import BaseModel
 
 class ProductModel(BaseModel):
-    name = models.CharField(_("name"), max_length=255)
-    content = RichTextUploadingField(_("content"))
+    name = models.CharField(max_length=255)
+    content = RichTextUploadingField()
     price = models.BigIntegerField()
 
     def __str__(self) -> str:

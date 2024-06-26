@@ -11,7 +11,7 @@ class OrderModel(BaseModel):
     customer = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='customer')
     longitude = models.FloatField()
     latitude = models.FloatField()
-    status = models.TextField(_("status"))
+    status = models.TextField()
     status_changed_at = models.DateTimeField(auto_now_add=True)
     product_price = models.BigIntegerField()
     total_price = models.BigIntegerField()

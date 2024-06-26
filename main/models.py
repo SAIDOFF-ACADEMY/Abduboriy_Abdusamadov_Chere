@@ -14,9 +14,9 @@ class BaseModel(models.Model):
         abstract = True
 
 class PageModel(BaseModel):
-    slug = models.SlugField()
-    title = models.CharField(_("title"), max_length=255)
-    content = RichTextUploadingField(_("content"))
+    slug = models.SlugField(unique=True)
+    title = models.CharField(max_length=255)
+    content = RichTextUploadingField()
 
     def __str__(self) -> str:
         return self.title
@@ -30,12 +30,12 @@ class GalleryPhotoModel(BaseModel):
     photo = models.ImageField(upload_to=f"gallery/{year}/{month}/")
 
 
-class SettingsModel(models.Model):
+class SettingsModel(BaseModel):
     contact_telegram = models.CharField(max_length=255)
     contact_phone = models.CharField(max_length=13)
     longitude = models.FloatField()
     latitude = models.FloatField()
-    location_text = models.CharField(_("location_text"), max_length=255)
+    location_text = models.CharField(max_length=255)
     working_hours_start = models.SmallIntegerField()
     working_hours_end = models.SmallIntegerField()
     telegram_bot = models.CharField(max_length=255)

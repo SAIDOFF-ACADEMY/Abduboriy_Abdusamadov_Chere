@@ -9,11 +9,11 @@ class UserModel(AbstractUser, BaseModel):
     phone = models.CharField(max_length=13)
     email = models.EmailField(unique=True)
     lang = models.CharField(max_length=2, choices=[("uz", "Uzbek"), ("ru", "Russian")], default="uz")
-    # username = None
-    # last_name = None
-    # first_name = None
-    # USERNAME_FIELD = 'email'
-    # REQUIRED_FIELDS = []
+    username = None
+    last_name = None
+    first_name = None
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
     def __str__(self) -> str:
         return self.full_name
