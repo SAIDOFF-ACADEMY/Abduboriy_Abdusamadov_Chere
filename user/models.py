@@ -46,7 +46,7 @@ class UserModel(AbstractUser, BaseModel):
     objects = CustomUserManager()
 
     def __str__(self) -> str:
-        return self.full_name
+        return self.full_name or self.email
 
     class Meta:
         verbose_name = _('user')

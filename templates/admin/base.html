@@ -62,6 +62,16 @@
                 </form>
                 {% include "admin/color_theme_toggle.html" %}
             {% endblock %}
+            <form action="/i18n/setlang/" method="post">
+              {% csrf_token %}
+              <select name="language">
+              {% for lang in LANGUAGES %}
+              <option value="{{ lang.0 }}" {% if lang.0 == request.LANGUAGE_CODE%}selected="yes"
+              {% endif %}>{{ lang.1 }}</option>
+              {% endfor %}
+              </select>
+              <input type="submit" value="Go" />
+          </form>
         </div>
         {% endif %}
         {% endblock %}
@@ -80,15 +90,6 @@
       </nav>
     {% endblock %}
     {% endif %}
-    <form action="/i18n/setlang/" method="post">
-        <select name="language">
-        {% for lang in LANGUAGES %}
-        <option value="{{ lang.0 }}" {% if lang.0 == request.LANGUAGE_CODE           %}selected="yes"
-        {% endif %}>{{ lang.1 }}</option>
-        {% endfor %}
-        </select>
-        <input type="submit" value="Go" />
-    </form>
     <div class="main" id="main">
       {% if not is_popup and is_nav_sidebar_enabled %}
         {% block nav-sidebar %}
