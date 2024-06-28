@@ -27,6 +27,10 @@ urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('api/v1/landing/common/', include('common.landing.urls')),
     path('api/v1/admin/common/', include('common.urls')),
+    # path('api/v1/landing/order/', include('order.landing.urls')),
+    path('api/v1/admin/order/', include('order.urls')),
+    # path('api/v1/landing/product/', include('product.landing.urls')),
+    # path('api/v1/admin/product/', include('product.urls')),
     path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]
 
