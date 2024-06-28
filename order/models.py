@@ -2,7 +2,8 @@ from django.db import models
 from product.models import ProductModel
 from user.models import UserModel
 from django.utils.translation import gettext_lazy as _
-from main.models import BaseModel
+from common.models import BaseModel
+
 
 class OrderModel(BaseModel):
     product = models.ForeignKey(ProductModel, on_delete=models.CASCADE, related_name="orders")
@@ -16,7 +17,9 @@ class OrderModel(BaseModel):
     product_price = models.BigIntegerField()
     total_price = models.BigIntegerField()
     admin = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='admin')
-    
+    condition = models.CharField(max_length=255, choices=(
+        (1, 'Qabul qilindi'), (2, 'Tayyorlanmoqda'), (3, 'Yo\'lda'), (4, 'Yetkazib berildi')))
+
     def __str__(self) -> str:
         return f"{self.id} {self.product.name}"
 

@@ -34,15 +34,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'drf_yasg',
     'ckeditor',
     'corsheaders',
     'ckeditor_uploader',
+    'rest_framework',
 
     # app
     'user',
     'order',
     'product',
-    'main',
+    'common',
 ]
 
 MIDDLEWARE = [
@@ -165,4 +167,9 @@ CKEDITOR_CONFIGS = {
         # 'height': 300,
         # 'width': 300,
     },
+}
+
+
+REST_FRAMEWORK = {
+
 }

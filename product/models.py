@@ -1,12 +1,14 @@
 from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.utils.translation import gettext_lazy as _
-from main.models import BaseModel
+from common.models import BaseModel
+
 
 class ProductModel(BaseModel):
     name = models.CharField(max_length=255)
     content = RichTextUploadingField()
     price = models.BigIntegerField()
+    is_active = models.BooleanField(default=True)
 
     def __str__(self) -> str:
         return self.name
