@@ -18,7 +18,7 @@ class AdminOrderGetView(generics.RetrieveAPIView):
 
 class AdminOrderUpdateView(generics.UpdateAPIView):
     queryset = models.OrderModel.objects.all()
-    serializer_class = serializers.OrderSerializers
+    serializer_class = serializers.OrderUpdateSerializer
     permission_classes = [permissions.IsAdminUser]
 
 
@@ -28,7 +28,3 @@ class AdminOrderDeleteView(generics.DestroyAPIView):
     permission_classes = [permissions.IsAdminUser]
 
 
-class AdminOrderCreateView(generics.CreateAPIView):
-    queryset = models.OrderModel.objects.all()
-    serializer_class = serializers.OrderSerializers
-    permission_classes = [permissions.IsAdminUser]

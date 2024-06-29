@@ -19,12 +19,6 @@ class GalleryDeleteView(generics.DestroyAPIView):
     permission_classes = [IsAdminUser]
 
 
-class GalleryGetView(generics.RetrieveAPIView):
-    queryset = models.GalleryPhotoModel.objects.all()
-    serializer_class = serializers.AdminGallerySerializers
-    permission_classes = [IsAdminUser]
-
-
 class GalleryCreateView(generics.CreateAPIView):
     queryset = models.GalleryPhotoModel.objects.all()
     serializer_class = serializers.AdminGallerySerializers

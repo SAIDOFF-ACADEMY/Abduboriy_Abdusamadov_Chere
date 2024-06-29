@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'ckeditor_uploader',
     'rest_framework',
+    'rest_framework.authtoken',
 
     # app
     'user',

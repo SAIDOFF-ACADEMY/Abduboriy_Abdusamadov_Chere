@@ -9,7 +9,7 @@ class GalleryView(generics.ListAPIView):
     serializer_class = serializers.GallerySerializers
 
 
-class PageView(generics.ListAPIView):
+class PageView(generics.RetrieveAPIView):
     queryset = models.PageModel.objects.all()
     serializer_class = serializers.PageSerializers
 

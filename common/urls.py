@@ -10,6 +10,5 @@ urlpatterns = [
     path('page/create/', views.PageCreateView.as_view()),
     path('gallery/create/', views.GalleryCreateView.as_view()),
     path('gallery/delete/<int:pk>/', views.GalleryDeleteView.as_view()),
-    path('gallery/<int:pk>/', views.GalleryGetView.as_view()),
     path('gallerys/', views.GalleryView.as_view()),
 ]
