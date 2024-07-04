@@ -16,7 +16,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = env("DEBUG")
-BOT_TOKEN = env("BOT_TOKEN")
+# BOT_TOKEN = env("BOT_TOKEN")
 ALLOWED_HOSTS = env("ALLOWED_HOSTS")
 
 # SECRET_KEY = 'django-insecure-8)eqqu1+!ewfe3hd#+t+c46nllyul_4&%i%rxmwj2y0r!w^sdn'
