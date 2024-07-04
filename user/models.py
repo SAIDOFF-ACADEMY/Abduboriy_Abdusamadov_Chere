@@ -56,8 +56,9 @@ class UserModel(AbstractUser, BaseModel):
 class UserContactModel(BaseModel):
     full_name = models.CharField(max_length=255)
     phone = models.CharField(max_length=255)
-    user = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name="userContacts")
-
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name="userContacts", null=True, blank=True)
+    is_contacted = models.BooleanField(default=False)
+    
     def __str__(self) -> str:
         return self.full_name
 

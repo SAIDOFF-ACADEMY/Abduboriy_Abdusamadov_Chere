@@ -1,7 +1,7 @@
 from user import models
 from rest_framework import serializers
 
-class UserSerializer(serializers.ModelSerializer):
+class AdminUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.UserModel
         fields = [
@@ -12,7 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
             'lang'
         ]
 
-class UserContactSerializer(serializers.ModelSerializer):
+class AdminUserContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.UserContactModel
         fields = [
@@ -21,7 +21,7 @@ class UserContactSerializer(serializers.ModelSerializer):
             'user',
         ]
 
-class LoginSerializer(serializers.ModelSerializer):
+class AdminLoginSerializer(serializers.ModelSerializer):
     email = serializers.EmailField()
     password = serializers.CharField()
 

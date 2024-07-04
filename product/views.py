@@ -4,7 +4,6 @@ from product import serializers
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
 
-
 # Product
 class ProductView(generics.ListAPIView):
     queryset = models.ProductModel.objects.all()

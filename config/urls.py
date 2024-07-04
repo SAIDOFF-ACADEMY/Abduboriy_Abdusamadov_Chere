@@ -30,8 +30,9 @@ urlpatterns = [
     path('api/v1/admin/order/', include('order.urls')),
     path('api/v1/landing/product/', include('product.landing.urls')),
     path('api/v1/admin/product/', include('product.urls')),
-    path('api/v1/user/', include('user.urls')),
-    path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('api/v1/admin/user/', include('user.urls')),
+    path('api/v1/landing/user/', include('user.landing.urls')),
+    path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]
 
 urlpatterns += i18n_patterns(

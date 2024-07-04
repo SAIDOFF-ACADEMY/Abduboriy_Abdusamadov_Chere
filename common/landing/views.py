@@ -12,6 +12,7 @@ class GalleryView(generics.ListAPIView):
 class PageView(generics.RetrieveAPIView):
     queryset = models.PageModel.objects.all()
     serializer_class = serializers.PageSerializers
+    lookup_field = 'slug'
 
 
 class SettingsView(generics.GenericAPIView):

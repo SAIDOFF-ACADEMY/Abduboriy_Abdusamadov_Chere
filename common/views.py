@@ -34,13 +34,13 @@ class PageView(generics.ListAPIView):
 
 class PageCreateView(generics.CreateAPIView):
     queryset = models.PageModel.objects.all()
-    serializer_class = serializers.AdminPageSerializers
+    serializer_class = serializers.AdminPageCreateSerializer
     permission_classes = [IsAdminUser]
 
 
 class PageUpdateView(generics.UpdateAPIView):
     queryset = models.PageModel.objects.all()
-    serializer_class = serializers.AdminPageSerializers
+    serializer_class = serializers.AdminPageCreateSerializer
     permission_classes = [IsAdminUser]
 
 
@@ -53,6 +53,7 @@ class PageDeleteView(generics.DestroyAPIView):
 class PageGetView(generics.RetrieveAPIView):
     queryset = models.PageModel.objects.all()
     serializer_class = serializers.AdminPageSerializers
+    lookup_field = 'slug'
     permission_classes = [IsAdminUser]
 
 

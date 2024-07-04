@@ -6,7 +6,7 @@ from modeltranslation.admin import TranslationAdmin
 
 class PageAdmin(TranslationAdmin):
     list_display = ['title', 'content']
-    readonly_fields = ['created_at', 'updated_at']
+    readonly_fields = ['created_at', 'updated_at', 'slug']
 
 
 class SettingsAdmin(TranslationAdmin):
