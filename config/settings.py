@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'order',
     'product',
     'common',
+    'team-1-bot',
 ]
 
 MIDDLEWARE = [
