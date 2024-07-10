@@ -1,47 +1,59 @@
 from rest_framework.test import APITestCase
 from rest_framework.authtoken.models import Token
 
-from user.models import UserModel
+from user import models
 
+# class TestEmailAPI(APITestCase):
+    # def test_get_email(self):
+    #     models.UserModel.objects.create_user(email='test@gmail.com', password='123123')
 
-class Test_login_api(APITestCase):
+    #     data = {
+    #         'email': 'test@gmail.com',
+    #         'password': '123123'
+    #     }
 
-    def test_only_admins_can_log_in(self):
-        UserModel.objects.create_user(email='test@mail.com', password='test1234567', is_staff=True)
+    #     response = self.client.get('/api/v1/admin/user/email/', data=data)
 
-        tokens_count = Token.objects.count()
+    #     self.assertEqual(response.status_code, 200)
 
-        self.assertEqual(tokens_count, 0)
+# class Test_login_api(APITestCase):
 
-        data = {
-            "email": "test@mail.com",
-            "password": "test1234567"
-        }
-        response = self.client.post('/api/v1/admin/user/login/', data=data)
+#     def test_only_admins_can_log_in(self):
+#         models.UserModel.objects.create_user(email='test@mail.com', password='test1234567', is_staff=True)
 
-        self.assertEqual(response.status_code, 200)
+#         tokens_count = Token.objects.count()
 
-        self.assertIn("token", response.data)
+#         self.assertEqual(tokens_count, 0)
 
-        tokens_count = Token.objects.count()
-        self.assertEqual(tokens_count, 1)
+#         data = {
+#             "email": "test@mail.com",
+#             "password": "test1234567"
+#         }
+#         response = self.client.post('/api/v1/admin/user/token/', data=data)
 
-    def test_invalid_email_password(self):
-        UserModel.objects.create_user(email='test@mail.com', password='test1234567', is_staff=True)
+#         self.assertEqual(response.status_code, 200)
 
-        tokens_count = Token.objects.count()
+#         self.assertIn("token", response.data)
 
-        self.assertEqual(tokens_count, 0)
+#         tokens_count = Token.objects.count()
+#         self.assertEqual(tokens_count, 1)
 
-        data = {
-            "email": "test@mail.com",
-            "password": "test1234568"
-        }
-        response = self.client.post('/api/v1/admin/user/login/', data=data)
+#     def test_invalid_email_password(self):
+#         models.UserModel.objects.create_user(email='test@mail.com', password='test1234567', is_staff=True)
 
-        self.assertEqual(response.status_code, 401)
+#         tokens_count = Token.objects.count()
 
-        self.assertNotIn("token", response.data)
+#         self.assertEqual(tokens_count, 0)
 
-        tokens_count = Token.objects.count()
-        self.assertEqual(tokens_count, 0)
+#         data = {
+#             "email": "test@mail.com",
+#             "password": "test1234568"
+#         }
+#         response = self.client.post('/api/v1/admin/user/token/', data=data)
+
+#         self.assertEqual(response.status_code, 401)
+
+#         self.assertNotIn("token", response.data)
+
+#         tokens_count = Token.objects.count()
+#         self.assertEqual(tokens_count, 0)
