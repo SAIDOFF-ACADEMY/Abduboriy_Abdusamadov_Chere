@@ -33,10 +33,10 @@ class CustomUserManager(UserManager):
 
 
 class UserModel(AbstractUser, BaseModel):
-    telegram_id = models.IntegerField(unique=True, null=True, blank=True)
+    telegram_id = models.BigIntegerField(unique=True, null=True, blank=True)
     full_name = models.CharField(max_length=255)
     phone = models.CharField(max_length=13)
-    email = models.EmailField(unique=True)
+    email = models.EmailField(unique=True, null=True, blank=True)
     lang = models.CharField(max_length=2, choices=[("uz", "Uzbek"), ("ru", "Russian")], default="uz")
     username = None
     last_name = None
