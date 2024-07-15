@@ -18,7 +18,7 @@ class OrderModel(BaseModel):
     total_price = models.BigIntegerField()
     admin = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='admin')
     condition = models.CharField(max_length=255, choices=(
-        (1, 'Qabul qilindi'), (2, 'Tayyorlanmoqda'), (3, 'Yo\'lda'), (4, 'Yetkazib berildi')))
+        (1, 'Qabul qilindi'), (2, 'Tayyorlanmoqda'), (3, 'Yo\'lda'), (4, 'Yetkazib berildi')), default='Qabul qilindi')
 
     def __str__(self) -> str:
         return f"{self.id} {self.product.name}"
